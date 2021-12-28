@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Welcome">
+        <lightning-button variant="clicker" label="Click Me!" title="Click Me!" onclick={handleWelcomeClick} class="slds-m-left_x-small"></lightning-button>
+        <lightning-button variant="clicker" label="Login" title="Login" onclick={handleLoginClick} class="slds-m-left_x-small"></lightning-button>
+        <lightning-button variant="clicker" label="Products" title="Products" onclick={handleProductsClick} class="slds-m-left_x-small"></lightning-button>
+        <template if:true={welcome}>
+            <c-contact-card></c-contact-card>
+        </template>
+        <template if:true={login}>
+            <c-login-page></c-login-page>
+        </template>
+        <template if:true={products}>
+            <c-product-carousel></c-product-carousel>
+        </template>
+    </lightning-card>
+</template>

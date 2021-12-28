@@ -1,0 +1,11 @@
+<template>
+    <template if:true={cData}>
+        <template for:each={cData} for:item="contact">
+            <p key={contact.id}>{contact.name}</p>
+            <p key={contact.id}>{contact.title}</p>
+            <p key={contact.id}>{contact.email}</p>
+            <p key={contact.id}>{contact.phone}</p>
+            <img key={contact.id} src={contact.picture} height='200' width='200'>
+        </template>
+    </template>
+</template>

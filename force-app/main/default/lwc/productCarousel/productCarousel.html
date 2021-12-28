@@ -1,0 +1,9 @@
+<template>
+    <template if:true={pData}>
+          <template for:each={pData} for:item="product">
+            <p key={product.id}> {product.name}</p>
+            <p key={product.id}> {product.description}</p>
+            <img key={product.id} src={product.picture} height='200' width='200'> 
+          </template>
+    </template>
+</template>
