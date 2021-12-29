@@ -3,6 +3,8 @@
     <types> 
         <members>AccountTriggerHelper</members>
         <members>AccountTriggerHelperTest</members>
+        <members>User_ProfileTriggerHelper</members>
+        <members>User_ProfileTriggerHelperTest</members>
         <members>DataFactory</members>
         <name>ApexClass</name>
     </types>

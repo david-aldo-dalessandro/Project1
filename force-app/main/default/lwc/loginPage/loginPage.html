@@ -1,5 +1,20 @@
 <template>
-    <template if:true={lData}>
-        <p>We got some data</p>
+    <template if:true={loggedOut}>
+    <div class="slds-m-bottom_small">
+        <lightning-input type="text" value={userName} label="User Name" onchange={handleUsername}> </lightning-input>
+        <lightning-input type="text" value={password} label="Password" onchange={handlePassword}> </lightning-input>
+    </div>
+     <lightning-button label="Log In" onclick={handleLogin} variant ="brand"></lightning-button>
     </template>
+
+     <template if:false={loggedOut}>
+        <p>{userName.Name}</p>
+        <p>{userName.Email__c}</p>
+        <p>{userName.Phone__c}</p>
+        <lightning-button label="Log Out" onclick={handleLogOut} variant ="brand"></lightning-button>
+        <lightning-button label="Products" onclick={handleProducts} variant = "brand"></lightning-button>
+        <template if:true={products}>
+            <c-product-carousel></c-product-carousel>
+        </template>
+     </template>
 </template>

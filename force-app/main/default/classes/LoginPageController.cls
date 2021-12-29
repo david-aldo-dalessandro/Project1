@@ -5,8 +5,8 @@
 public with sharing class LoginPageController {
     
     @AuraEnabled(cacheable=true)
-    public static Contact authenticateLogin(String userName, String password){
-        Contact user = [SELECT name FROM Contact WHERE name = :userName LIMIT 1];
+    public static User_Profile__c authenticateLogin(String userName, String password){
+        User_Profile__c user = [SELECT name, email__c, phone__c FROM User_Profile__c WHERE name = :userName AND password__c = :password];
 
         return user;
     }
