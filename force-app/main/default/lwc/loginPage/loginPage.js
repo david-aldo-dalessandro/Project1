@@ -1,5 +1,4 @@
 import { LightningElement, track } from 'lwc';
-import {ShowToastEvent} from 'lightning/platformShowToastEvent'
 import login from '@salesforce/apex/LoginPageController.authenticateLogin';
 
 export default class LoginPage extends LightningElement {

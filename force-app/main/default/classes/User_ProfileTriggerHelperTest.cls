@@ -4,6 +4,18 @@
 
 @isTest
 public with sharing class User_ProfileTriggerHelperTest {
-    
+
+    //------------Test Postive----------//
+
+
+    //TN
+
+    //TS
+
+    //TB
+
+    //TR (Test Restricted User)
+
+
     
 }

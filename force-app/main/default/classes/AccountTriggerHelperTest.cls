@@ -7,10 +7,9 @@ public with sharing class AccountTriggerHelperTest {
 
 
     //TP_TestAccountValidateEmpty
-    //Tests the AccountValidateEmpty method for a postive inerstion
+    //Tests the AccountValidateEmpty method for a postive insertion
     @isTest 
     public static void TP_TestAccountValidateEmpty(){
-
 
 
     }//end TP_TestAccountValidateEmpty()
