@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email__c</fullName>
+    <description>eMail address for the user profile of the contact</description>
+    <externalId>false</externalId>
+    <inlineHelpText>eMail must match the eMail of the contact related to this user profile.</inlineHelpText>
+    <label>Email</label>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Email</type>
+    <unique>false</unique>
+</CustomField>
