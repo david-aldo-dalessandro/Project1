@@ -7,40 +7,59 @@ public with sharing class AccountTriggerHelperTest {
 
 
     //TP_TestAccountValidateEmpty
-    //Tests the AccountValidateEmpty method for a postive insertion
+    //Tests the AccountValidateEmpty method for an accepted account
     @isTest 
     public static void TP_TestAccountValidateEmpty(){
+        Test.startTest();
+        //List of booleans for results of test
+        Boolean result;
+        Integer numAccounts = 10;
 
+        //generate accounts for comparison
+        List<Account> newAccounts = DataFactory.CreateAccountFilled(numAccounts);
 
+        //begin testing
+        result = AccountTriggerHelper.AccountValidateEmpty(newAccounts);
+
+        //evaluate result
+        System.assert(result);
+
+        Test.stopTest();
     }//end TP_TestAccountValidateEmpty()
 
     //TN_TestAccountValidateEmpty
-    //Tests the AccountValidateEmpty method for a negative insertion
+    //Tests the AccountValidateEmpty method for a rejected account
     @isTest 
     public static void TN_TestAccountValidateEmpty(){
 
         //List of booleans for results of tests
-        List<Boolean> result= new List<Boolean>();
+        List<Boolean> results= new List<Boolean>();
+        Integer i, j, k;
+        Integer numAccounts = 10;
+        Integer numTests = 3;
 
-        List<Account> testAccounts = DataFactory.CreateAccountEmpty(10);
+        //create accounts with different fields filled, but not all fields
+        List<Account> testAccounts = DataFactory.CreateAccountEmpty(numAccounts);
         List<Account> testAccountsName = new List<Account>();
         List<Account> testAccountsPhone = new List<Account>();
 
-        for(Integer i = 0; i < 10; i++){
+        for(i = 0; i < numAccounts; i++){
             testAccountsName.add(new Account(name = 'testName'));
             testAccountsPhone.add(new Account(phone = '6666666666'));
         }//end for i
 
-        //call the function to test
-        result.add(AccountTriggerHelper.AccountValidateEmpty(testAccounts));
-        result.add(AccountTriggerHelper.AccountValidateEmpty(testAccountsName));
-        result.add(AccountTriggerHelper.AccountValidateEmpty(testAccountsPhone));
+        //test methods
+        results.add(AccountTriggerHelper.AccountValidateEmpty(testAccounts)); //empty accounts
+        results.add(AccountTriggerHelper.AccountValidateEmpty(testAccountsName)); //name only
+        results.add(AccountTriggerHelper.AccountValidateEmpty(testAccountsPhone)); //phone only
 
-        //assert the result
-        System.assert(!result[0]); //tests totally empty account
-        //System.assert(result[1]); //tests account with only name
-        //System.assert(result[2]); //tests account with only phone
+        //loop through results 
+        for(i = 0; i < numTests; i++){
+            System.assert(!results[i]);
+        }//end for i
         
     }//end TN_TestAccountValidateEmpty
 
-}
+
+
+}//end class

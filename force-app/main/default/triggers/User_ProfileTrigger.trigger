@@ -8,11 +8,11 @@ trigger User_ProfileTrigger on User_Profile__c (before insert, before update, be
     switch on trigger.operationType{
 
         when BEFORE_INSERT{
-
+            User_ProfileTiggerHelper.User_ProfileValidateDuplicate(trigger.new);
         }
 
         when BEFORE_UPDATE{
-
+            User_ProfileTiggerHelper.User_ProfileValidateDuplicate(trigger.new);
         }
 
         when BEFORE_DELETE{

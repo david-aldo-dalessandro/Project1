@@ -10,6 +10,7 @@
     </types>
     <types>
         <members>AccountTrigger</members>
+        <members>User_ProfileTrigger</members>
         <name>ApexTrigger</name>
     </types>
     <version>52.0</version>
