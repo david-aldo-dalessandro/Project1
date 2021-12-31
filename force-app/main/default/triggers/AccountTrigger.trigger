@@ -9,13 +9,13 @@ trigger AccountTrigger on Account (before insert, before update, before delete, 
         when BEFORE_INSERT{
 
             AccountTriggerHelper.AccountValidateEmpty(trigger.new);
-            //AccountTriggerHelper.AccountValidateDuplicate(trigger.new);
+            AccountTriggerHelper.AccountValidateDuplicate(trigger.new);
         }
 
         when BEFORE_UPDATE{
 
             AccountTriggerHelper.AccountValidateEmpty(trigger.new);
-            //AccountTriggerHelper.AccountValidateDuplicate(trigger.new);
+            AccountTriggerHelper.AccountValidateDuplicate(trigger.new);
 
         }
 

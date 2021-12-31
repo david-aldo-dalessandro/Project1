@@ -5,6 +5,8 @@
         <members>AccountTriggerHelperTest</members>
         <members>User_ProfileTriggerHelper</members>
         <members>User_ProfileTriggerHelperTest</members>
+        <members>ProductTriggerHelper</members>
+        <members>ProductTriggerHelperTest</members>
         <members>DataFactory</members>
         <name>ApexClass</name>
     </types>
@@ -12,6 +14,10 @@
         <members>AccountTrigger</members>
         <members>User_ProfileTrigger</members>
         <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>User_Profile__c</members>
+        <name>CustomObject</name>
     </types>
     <version>52.0</version>
 </Package>

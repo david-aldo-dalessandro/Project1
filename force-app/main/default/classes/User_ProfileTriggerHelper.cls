@@ -3,9 +3,6 @@
 //User_Profile Trigger Helper
 
 public with sharing class User_ProfileTriggerHelper {
-    public User_ProfileTriggerHelper() {
-        system.debug('hello');
-    }
 
     //User_ProfileValidateDuplicate
     //ensure no profile is created with the same name or email
@@ -13,10 +10,8 @@ public with sharing class User_ProfileTriggerHelper {
     public static Boolean User_ProfileValidateDuplicate(List<User_Profile__c> newUser_Profiles){
         //return variables
         Boolean result = true;
-
         //query for all current user profile names and emails
         List<User_Profile__c> currUser_Profiles = [SELECT Name, email__c FROM User_Profile__c];
-
         //loop through the new profiles
         for(User_Profile__c newUser_Profile : newUser_Profiles){
             //loop through the current profiles
@@ -41,6 +36,8 @@ public with sharing class User_ProfileTriggerHelper {
         System.debug('Returning value of ' + result);
         return result;
     }// end User_ProfileValidateDuplicate
+
+    //
 
 
 

@@ -14,5 +14,15 @@ public with sharing class ProductCarouselController {
 
         return currProducts;
 
-    }
+    }//end GetProducts
+
+    @AuraEnabled
+    public static void InsertProducts(List<Product2> newProducts){
+        try{
+            insert newProducts;
+        }
+        catch(Exception exp){
+            throw new AuraHandledException(exp.getMessage());
+        }
+    }//end InsertProducts
 }
