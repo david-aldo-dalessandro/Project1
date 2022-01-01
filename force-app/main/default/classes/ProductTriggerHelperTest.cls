@@ -18,7 +18,7 @@ public with sharing class ProductTriggerHelperTest {
         String productName;
         string index;
         //create and insert a Standard Pricebook
-        Id pricebookId = Test.getStandardPricebookId();
+        Id pricebookId = Test.getStandardPricebookId(); //generate the StandardPB Id since we don't have one in the test org
         Pricebook2 standardPricebook = new Pricebook2(Id = pricebookId);
         update standardPricebook;
         //create a list of Products

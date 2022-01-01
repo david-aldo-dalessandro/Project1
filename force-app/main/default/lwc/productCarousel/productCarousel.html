@@ -1,17 +1,55 @@
 <template>
+
     <template if:true={pData}>
-          <template for:each={pData} for:item="product" for:index="index" >
-            <p key={product.id}> {product.name}</p>
-            <p key={product.id}> {product.description}</p>
-            <img key={product.id} src={product.picture} height='200' width='200'> 
-            <lightning-button key={product.id} label="Add to cart" onclick={handleCurrentProduct} variant = "brand" value={index}></lightning-button>
-          </template>
-          <template if:true={cart}>
-            <template for:each={products} for:item="product" for:index="index">
-                <p key={product.name}> {product.Name} </p>
-                <img key={product.name} src={product.picture} height='200' width='200'>
-             </template> 
-             <lightning-button label="Make Order" onclick={handleAddToOrder} variant = "brand"></lightning-button>
-          </template>
+
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col">
+                <span>
+                <template for:each={pData} for:item="product" for:index="index" >
+                    <p key={product.id}> {product.name}</p>
+                    <p key={product.id}> {product.description}</p>
+                    <img key={product.id} src={product.picture} height='200' width='200'> 
+                    <lightning-button key={product.id} label="Add to cart" onclick={handleCurrentProduct} variant = "brand" value={index}></lightning-button>
+                </template>
+                </span>
+            </div>
+
+            <div class="slds-col">
+                <span>
+                    <template if:true={cart}>
+                        <p>{currentuser}'s Cart</p>
+                        <template for:each={products} for:item="product" for:index="index">
+                            <p key={product.name}> {product.name} x {product.quantity}</p>
+                            <img key={product.name} src={product.picture} height='200' width='200'>
+                        </template> 
+                        <lightning-button label="Next (Contracts)" onclick={handleShowContracts} variant = "brand"></lightning-button>
+                     </template>
+                </span>
+            </div>
+
+            <div class="slds-col">
+                <span>
+                    <template if:true={orderReady}>
+                        <p>{currentuser}'s Contracts</p>
+                        <div class="slds-p-around_medium lgc-bg">
+                            <lightning-button-menu label="Current Contracts" alternative-text="Show menu">
+                                <template for:each={currentContracts} for:item="contract" for:index="index">
+                                    <lightning-menu-item key={contract.Id} label={contract.ContractNumber} onclick={handleOrder} value={contract.Id}></lightning-menu-item>
+                                </template> 
+                            </lightning-button-menu>
+                            <template if:true={confirm}>
+                                <lightning-button label="Place Order" onclick={handleConfirm} variant = "brand"></lightning-button>
+                            </template>
+                        </div>
+                     </template>
+                </span>
+            </div>
+
+        </div>
     </template>
+
 </template>
+
+
+
+

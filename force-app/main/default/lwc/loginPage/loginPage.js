@@ -42,6 +42,7 @@ export default class LoginPage extends LightningElement {
                 .then(result=>{
                     this.userName = result;
                     this.loggedOut = false; //creates logged in environment
+                    console.log('userName.Name = ' + this.userName.Contact_User__r.AccountId);
 
                 })//end then
                 .catch(error =>{

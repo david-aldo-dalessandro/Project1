@@ -14,7 +14,7 @@
         <lightning-button label="Log Out" onclick={handleLogOut} variant ="brand"></lightning-button>
         <lightning-button label="Products" onclick={handleProducts} variant = "brand"></lightning-button>
         <template if:true={products}>
-            <c-product-carousel></c-product-carousel>
+            <c-product-carousel accountid ={userName.Contact_User__r.AccountId} currentuser={userName.Name}></c-product-carousel>
         </template>
      </template>
 </template>
