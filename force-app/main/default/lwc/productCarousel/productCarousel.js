@@ -68,7 +68,7 @@ testProducts = [{Name: 'testName'}];
 
     handleShowContracts(){
         this.orderReady = true;
-        contractList({id: this.accountid})
+        contractList({accountId: this.accountid})
         .then(contracts => { 
             console.log('We got' + contracts.length + ' contracts: ' + contracts);
             for(this.k = 0; this.k < contracts.length; this.k++){
@@ -105,7 +105,7 @@ testProducts = [{Name: 'testName'}];
 
     handleConfirm(){
 
-        createOrderItems({product2Ids : this.product2Id, pQuantity : this.pQuantity, totalItems : this.products.length, accountId: this.accountid})
+        createOrderItems({product2Ids : this.product2Id, pQuantity : this.pQuantity, totalItems : this.products.length, accountId: this.accountid,})
         .then(result => { 
             console.log('We entered this order: ' + result);
         })

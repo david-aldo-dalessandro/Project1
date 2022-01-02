@@ -1,18 +1,18 @@
 <template>
-    <template if:true={loggedOut}>
-    <div class="slds-m-bottom_small">
-        <lightning-input type="text" value={userName} label="User Name" onchange={handleUsername}> </lightning-input>
-        <lightning-input type="text" value={password} label="Password" onchange={handlePassword}> </lightning-input>
+    <template class="ifTrue" if:true={loggedOut}>
+    <div class="slds-m-bottom_small userinfo">
+        <lightning-input class="uName" type="text" value={userName} label="User Name" onchange={handleUsername}> </lightning-input>
+        <lightning-input class="pass" type="text" value={password} label="Password" onchange={handlePassword}> </lightning-input>
     </div>
-     <lightning-button label="Log In" onclick={handleLogin} variant ="brand"></lightning-button>
+     <lightning-button class="loggin" label="Log In" onclick={handleLogin} variant ="brand"></lightning-button>
     </template>
 
-     <template if:false={loggedOut}>
-        <p>{userName.Name}</p>
-        <p>{userName.Email__c}</p>
-        <p>{userName.Phone__c}</p>
-        <lightning-button label="Log Out" onclick={handleLogOut} variant ="brand"></lightning-button>
-        <lightning-button label="Products" onclick={handleProducts} variant = "brand"></lightning-button>
+     <template class="ifFalse" if:false={loggedOut}>
+        <p class="Name">{userName.Name}</p>
+        <p class="Email">{userName.Email__c}</p>
+        <p class="Phone">{userName.Phone__c}</p>
+        <lightning-button class="logout" label="Log Out" onclick={handleLogOut} variant ="brand"></lightning-button>
+        <lightning-button class="products" label="Products" onclick={handleProducts} variant = "brand"></lightning-button>
         <template if:true={products}>
             <c-product-carousel accountid ={userName.Contact_User__r.AccountId} currentuser={userName.Name}></c-product-carousel>
         </template>

@@ -28,8 +28,8 @@ export default class LoginPage extends LightningElement {
     //switches log in status to logged out
     handleLogOut(){
         this.loggedOut = true;
-        this.userName = 'Username';
-        this.password = 'Password';
+        this.userName = 'Enter Username Again';
+        this.password = 'Enter Password Again';
     }
 
     //call the apex method
@@ -38,11 +38,11 @@ export default class LoginPage extends LightningElement {
 
         //ensure the user name entered is not blank
         if(this.userName !== '' && this.password !== ''){
+            console.log("Inside if statement");
             login({userName: this.userName, password: this.password})
                 .then(result=>{
                     this.userName = result;
                     this.loggedOut = false; //creates logged in environment
-                    console.log('userName.Name = ' + this.userName.Contact_User__r.AccountId);
 
                 })//end then
                 .catch(error =>{
