@@ -1,5 +1,4 @@
 <template>
-
     <template if:true={pData}>
 
         <div class="slds-grid slds-gutters">
@@ -9,7 +8,7 @@
                     <p key={product.id}> {product.name}</p>
                     <p key={product.id}> {product.description}</p>
                     <img key={product.id} src={product.picture} height='200' width='200'> 
-                    <lightning-button key={product.id} label="Add to cart" onclick={handleCurrentProduct} variant = "brand" value={index}></lightning-button>
+                    <lightning-button class="button1" key={product.id} label="Add to cart" onclick={handleCurrentProduct} variant = "brand" value={index}></lightning-button>
                 </template>
                 </span>
             </div>
@@ -22,7 +21,7 @@
                             <p key={product.name}> {product.name} x {product.quantity}</p>
                             <img key={product.name} src={product.picture} height='200' width='200'>
                         </template> 
-                        <lightning-button label="Next (Contracts)" onclick={handleShowContracts} variant = "brand"></lightning-button>
+                        <lightning-button class="button2" label="Next (Contracts)" onclick={handleShowContracts} variant = "brand"></lightning-button>
                      </template>
                 </span>
             </div>
@@ -34,7 +33,7 @@
                         <div class="slds-p-around_medium lgc-bg">
                             <lightning-button-menu label="Current Contracts" alternative-text="Show menu">
                                 <template for:each={currentContracts} for:item="contract" for:index="index">
-                                    <lightning-menu-item key={contract.Id} label={contract.ContractNumber} onclick={handleOrder} value={contract.Id}></lightning-menu-item>
+                                    <lightning-menu-item class="contractItem" key={contract.Id} label={contract.ContractNumber} onclick={handleOrder} value={contract.Id}></lightning-menu-item>
                                 </template> 
                             </lightning-button-menu>
                             <template if:true={confirm}>
@@ -45,7 +44,7 @@
                 </span>
             </div>
         </div>
-        
+
     </template>
 
 </template>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Sends an email when a new order is made by a contact</description>
+        <name>New_Order_Email</name>
+        <label>New Order Email</label>
+        <locationX>466</locationX>
+        <locationY>325</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <stringValue>Hello, a new order has been created</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>Owner_Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <elementReference>Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>New Order</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>53.0</apiVersion>
+    <constants>
+        <description>Email to be mailed to</description>
+        <name>Email</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>david.dalessandro@revature.net</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <description>Owner_Email</description>
+        <name>Owner_Email</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>david.aldo.dalessandro@gmail.com</stringValue>
+        </value>
+    </constants>
+    <description>Sends and email out when an order is created</description>
+    <interviewLabel>New Order Email {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>New Order Email</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>New_Order_Email</targetReference>
+        </connector>
+        <object>Order</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

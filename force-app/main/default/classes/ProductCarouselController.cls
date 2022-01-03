@@ -14,7 +14,12 @@ public with sharing class ProductCarouselController {
         //SOQL query for the products
         currProducts = [SELECT name, description FROM Product2];
         //return statement
-        return currProducts;
+        if(currProducts.size() > 0){
+            return currProducts;
+        }//end if
+        else{
+            return null;
+        }//end else
     }//end GetProducts
 
     //GetContracts
@@ -26,7 +31,12 @@ public with sharing class ProductCarouselController {
         //SOQLquery for the contracts matching the accountId
         currContracts = [SELECT Id, ContractNumber FROM Contract WHERE AccountId = :accountId];
         //return statement
-        return currContracts;
+        if(currContracts.size() > 0){
+            return currContracts;
+        }//end if
+        else{
+            return null;
+        }
     }//end getContracts
 
     //InsertOrder
@@ -54,7 +64,9 @@ public with sharing class ProductCarouselController {
     //CreateOrderItems
     //Creates oderItems for the newly created order using productIds, their quantities, the total number of products, and the accountId associated with the order
     //Also queries for the specific pricebookId related to the order, and all current pricebookEntries 
-    public static void CreateOrderItems(List<String> product2Ids, List<Integer> pQuantity, Integer totalItems, String accountId){
+    public static Boolean CreateOrderItems(List<String> product2Ids, List<Integer> pQuantity, Integer totalItems, String accountId){
+        //Testing variables 
+        Boolean testResult;
         //creates an order obejct and queries for the order matching the accountId
         Order currOrder = [SELECT Id, Pricebook2Id FROM Order WHERE AccountId = :accountId LIMIT 1];
         //sets a variable equal to the current pricebook of the order
@@ -90,10 +102,13 @@ public with sharing class ProductCarouselController {
         //try the insertion
         try {
             insert newOrderItem;
+            testResult = true;
 
         } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
+            //throw new AuraHandledException(e.getMessage());
+            testResult = false;
         }
+        return testResult;
     }//end CreateOrderItems
 }//end class
 

@@ -59,5 +59,4 @@ describe('c-product-carousel suite',()=>{
 
 
 
-
 })
