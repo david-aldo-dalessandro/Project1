@@ -103,7 +103,6 @@ public with sharing class ProductCarouselControllerTest {
         //create an account for an id
         Account currAccount = new Account(Name = 'recordName', Phone = '(666) 666 6666');
         Account returnedAccount = new Account();
-
         //insert the account
         insert currAccount;
 
@@ -118,5 +117,33 @@ public with sharing class ProductCarouselControllerTest {
 
         System.assertEquals(null, returnedContracts);
     }//end TN_GetContracts
+
+    //Test Positive InsertOrder
+    @isTest 
+    public static void TP_InsertOrder(){
+        Test.startTest();
+        //teat variables
+        Boolean result;
+        //create an account
+        Account currAccount = new Account(Name = 'Name', Phone = '(666) 666 6666');
+        insert currAccount;
+        //create a contract using a prebuilt function
+        Contract currContract = new Contract(StartDate = date.today(), AccountId = currAccount.Id, ContractTerm = 3, Status = 'Draft');
+        System.debug('Contract ID = ' + currContract.Id);
+        insert currContract;
+        //create the standard pricebook
+        Id pricebookId = Test.getStandardPricebookId(); //generate the StandardPB Id since we don't have one in the test org
+        Pricebook2 standardPricebook = new Pricebook2(Id = pricebookId);
+        update standardPricebook;
+
+        //test the function
+        result = ProductCarouselController.InsertOrder(currAccount.Id, currContract.Id);
+        System.debug('The result is ' + result);
+
+        Order testOrder = [SELECT Id, ContractId FROM Order ];
+        System.assertEquals(null, testOrder);
+
+        Test.stopTest();
+    }//end TP_InsertOrder
 
 }//end class

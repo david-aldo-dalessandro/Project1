@@ -128,9 +128,11 @@ testProducts = [{Name: 'testName'}];
         createOrderItems({product2Ids : this.product2Id, pQuantity : this.pQuantity, totalItems : this.products.length, accountId: this.accountid,})
         .then(result => { 
             console.log('We entered this order: ');
+            this.pData = false;
         })
         .catch(error=>{
             console.error(error);
         })
+        
     }//end handlConfirm
 }//end class

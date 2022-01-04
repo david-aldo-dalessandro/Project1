@@ -44,20 +44,23 @@ public with sharing class ProductCarouselController {
     //Also queries for Standard pricebook Id
     //returns query for order items
     @AuraEnabled
-    public static Pricebook2 InsertOrder(String accountId, String contractId){
+    public static Boolean InsertOrder(String accountId, String contractId){
+        //testing variables
+        BOolean result;
         //create a pricebook2 object
         //SOQL query for the standard pricebook
         Pricebook2 standardPricebook = [SELECT Id FROM Pricebook2 WHERE IsStandard = true];
         //create the new oder object
         Order newOrder = new Order(AccountId = accountId, ContractId = contractId, EffectiveDate = date.today(), Status = 'Draft', Pricebook2Id = standardPricebook.Id);
         //try the insertion
-        try{
+        if(newOrder != null){
             insert newOrder;
+            result = true;
         }
-        catch(Exception exp){
-            throw new AuraHandledException(exp.getMessage());
+        else{
+            result = false;
         }
-        return standardPricebook;
+        return result;
     }//end InsertOrder
 
     @AuraEnabled
@@ -67,8 +70,9 @@ public with sharing class ProductCarouselController {
     public static Boolean CreateOrderItems(List<String> product2Ids, List<Integer> pQuantity, Integer totalItems, String accountId){
         //Testing variables 
         Boolean testResult;
-        //creates an order obejct and queries for the order matching the accountId
-        Order currOrder = [SELECT Id, Pricebook2Id FROM Order WHERE AccountId = :accountId LIMIT 1];
+        //creates an order object and queries for the order matching the accountId
+        //also ensure that the order it is pulling is empty, validating the current total amount is 0
+        Order currOrder = [SELECT Id, Pricebook2Id FROM Order WHERE AccountId = :accountId AND TotalAmount = 0];
         //sets a variable equal to the current pricebook of the order
         String pricebook2Id = currOrder.Pricebook2Id;
         //creates a list for new order itesm
@@ -111,4 +115,3 @@ public with sharing class ProductCarouselController {
         return testResult;
     }//end CreateOrderItems
 }//end class
-
