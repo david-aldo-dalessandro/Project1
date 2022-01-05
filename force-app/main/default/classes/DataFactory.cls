@@ -76,15 +76,15 @@ public with sharing class DataFactory {
     //----------------Filled Profiles---------------//
     //CreateUser_ProfileFilled (Single)
     //creates a single filled user_profile
-    public static User_Profile__c CreateUser_ProfileFilled(){
-        User_Profile__c newUser_Profile = new User_Profile__c(Name = 'Test', password__c = 'password', email__c = 'email@email.com', phone__c = ' (666) 666 6666');
+    public static User_Profile__c CreateUser_ProfileFilled(String contactUser){
+        User_Profile__c newUser_Profile = new User_Profile__c(Name = 'Test', password__c = 'password', email__c = 'email@email.com', phone__c = ' (666) 666 6666', Contact_User__c = contactUser);
         return newUser_Profile;
     }//end CreatUser_ProfileFilled Single
 
     //CreateUser_ProfileFilled (multiple)
     //creates multiple filled user_profiles with unique names and emails
     //'different' parameter is for creating another set of objects with names that differ from the first potential set
-    public static List<User_Profile__c> CreateUser_ProfileFilled(Integer numUser_Profiles, Boolean different){
+    public static List<User_Profile__c> CreateUser_ProfileFilled(Integer numUser_Profiles, Boolean different, List<Contact> contactUser){
         List<User_Profile__c> newUser_Profiles = new List<User_Profile__c>();
         String user_Name;
         String email;
@@ -94,7 +94,7 @@ public with sharing class DataFactory {
                 index = String.valueOf(i+1);
                 user_Name = 'Test' + index;
                 email = 'email' + index + '@email.com';
-                newUser_Profiles.add(new User_Profile__c(Name = user_Name, password__c = 'password', email__c = email, phone__c = ' (666) 666 6666'));
+                newUser_Profiles.add(new User_Profile__c(Name = user_Name, password__c = 'password', email__c = email, phone__c = ' (666) 666 6666', Contact_User__c = contactUser[i].Id));
             }//end for i
         }//end if different
         else{
@@ -102,7 +102,7 @@ public with sharing class DataFactory {
                 index = String.valueOf(i+1+numUser_Profiles);
                 user_Name = 'Test' + index;
                 email = 'email' + index + '@email.com';
-                newUser_Profiles.add(new User_Profile__c(Name = user_Name, password__c = 'password', email__c = email, phone__c = ' (666) 666 6666'));
+                newUser_Profiles.add(new User_Profile__c(Name = user_Name, password__c = 'password', email__c = email, phone__c = ' (666) 666 6666', Contact_User__c = contactUser[i].Id));
                 }//end for i
         }//end else
         return newUser_Profiles;

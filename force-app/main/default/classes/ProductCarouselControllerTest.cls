@@ -140,7 +140,7 @@ public with sharing class ProductCarouselControllerTest {
         result = ProductCarouselController.InsertOrder(currAccount.Id, currContract.Id);
         System.debug('The result is ' + result);
 
-        System.assertEquals(null, result);
+        System.assertEquals(true, result);
 
         Test.stopTest();
     }//end TP_InsertOrder
